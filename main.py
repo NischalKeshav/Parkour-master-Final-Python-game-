@@ -13,11 +13,15 @@ class Game:
     self.canvas_height = 500
     self.canvas_width = 500
     self.bg = PhotoImage(file= "background.png")
+    self.bg2 = PhotoImage(file= "background2.png")
     h = self.bg.height()
     w = self.bg.height()
     for x in range (0,5):
       for y in range (0,5):
-        self.canvas.create_image((x*w),y*h,image= self.bg,anchor= 'nw') 
+        if y % 2 == 0:
+          self.canvas.create_image((x*w),y*h,image= self.bg,anchor= 'nw') 
+        else:
+          self.canvas.create_image((x*w),y*h,image= self.bg2,anchor= 'nw') 
     self.sprites =[]
     self.running = True 
   def mainloop(self):
@@ -112,6 +116,15 @@ plateform9 = PlateformSprite (g,PhotoImage(file='plateform10x32.png'),170,250,32
 
 plateform10 = PlateformSprite (g,PhotoImage(file='plateform10x32.png'),230,200,32,10)
 
-
+g.sprites.append(plateform1)
+g.sprites.append(plateform2)
+g.sprites.append(plateform3)
+g.sprites.append(plateform4)
+g.sprites.append(plateform5)
+g.sprites.append(plateform6)
+g.sprites.append(plateform7)
+g.sprites.append(plateform8)
+g.sprites.append(plateform9)
+g.sprites.append(plateform10)
 g.mainloop()
 
