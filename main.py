@@ -89,8 +89,8 @@ class PlateformSprite(Sprite):
     Sprite.__init__(self,game)
     self.photo_image = photo_image
     self.image = game.canvas.create_image(x,y,image = self.photo_image ,anchor='nw')
-
-
+    self.coordinates = Coords(x,y,x + width,y + height )
 
 g = Game()
+plateform1 = PlateformSprite (g,PhotoImage(())
 g.mainloop()
