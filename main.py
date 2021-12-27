@@ -92,5 +92,26 @@ class PlateformSprite(Sprite):
     self.coordinates = Coords(x,y,x + width,y + height )
 
 g = Game()
-plateform1 = PlateformSprite (g,PhotoImage(())
+plateform1 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),0,480,100,10)
+
+plateform2 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),150,440,100,10)
+
+plateform3 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),300,400,100,10)
+
+plateform4 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),300,160,100,10)
+
+plateform5 = PlateformSprite (g,PhotoImage(file='platform66x10.png'),175,350,66,10)
+
+plateform6 = PlateformSprite (g,PhotoImage(file='platform66x10.png'),50,300,66,10)
+
+plateform7 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),170,120,66,10)
+
+plateform8 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),45,60,66,10)
+
+plateform9 = PlateformSprite (g,PhotoImage(file='plateform10x32.png'),170,250,32,10)
+
+plateform10 = PlateformSprite (g,PhotoImage(file='plateform10x32.png'),230,200,32,10)
+
+
 g.mainloop()
+
