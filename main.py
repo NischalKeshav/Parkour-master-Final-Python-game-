@@ -181,6 +181,8 @@ class stickFigure(Sprite):
     elif self.y < 0  and co.y1 <= 0:
       self.y  = 0 
       top = False
+    if co.x1 <= 0 and self.x<0:
+      self.x = 0  
     if self.x > 0 and co.x2 >= self.game.canvas_width:
       self.x = 0 
       right = False
