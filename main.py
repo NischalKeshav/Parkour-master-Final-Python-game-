@@ -34,7 +34,7 @@ class Game:
           sprite.move()
       self.tk.update_idletasks() 
       self.tk.update()
-      time.sleep(.01)  
+      time.sleep(.007)  
 class Coords:
   def __init__(self,x1=0,y1=0,x2=0,y2=0):
     self.x1 = x1
@@ -116,6 +116,7 @@ class stickFigure(Sprite):
     self.current_image = 0
     self.current_image_add = 1
     self.jump_count = 0
+    self.run_count = 0
     self.last_time = time.time()
     self.coordinates = Coords()
     game.canvas.bind_all('<KeyPress-Left>', self.turn_left)
@@ -123,14 +124,16 @@ class stickFigure(Sprite):
     game.canvas.bind_all('<space>', self.jump)
     game.canvas.bind_all('<KeyPress-Up>', self.jump)
     game.canvas.bind('<KeyRelease>',self.stop)
-  def turn_left(self,evt):
-    if self.y == 0:
-      self.x = -2
-  def stop(self,evt):
-    self.x=  0 
   def turn_right(self,evt):
-    if self.y == 0:
-      self.x = 2
+    if self.x == 0:
+      self.x = 1.75
+      self.run_count = 0
+  def stop(self,evt):
+    self.x =  0 
+  def turn_left(self,evt):
+    if self.x == 0:
+      self.x = -1.75
+      self.run_count = 0
   def jump (self,evt):
     if self.y == 0:
       self.y = -4
@@ -169,6 +172,13 @@ class stickFigure(Sprite):
         self.y = 4
     if self.y > 0:
       self.jump_count -= 1
+    if self.x != 0:
+      self.run_count += 1
+      if self.run_count >35:
+        if self.y == 0:
+          self.x = 0
+          self.animate()
+          self.run_count =0
     co = self.coords()
     left = True
     right = True
@@ -225,6 +235,15 @@ class stickFigure(Sprite):
       self.y = 4
 
     self.game.canvas.move(self.image,self.x,self.y)
+class DoorSprite(Sprite):
+    def __init__(self, game, photo_image, x, y, width, height):
+        Sprite.__init__(self, game)
+        self.photo_image = photo_image
+        self.image = game.canvas.create_image(x, y, image=self.photo_image, anchor='nw')
+        self.coordinates = Coords(x, y, x + (width / 2), y + height)
+        self.endgame = True
+
+
 g = Game()
 plateform1 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),0,480,100,10)
 
@@ -238,7 +257,7 @@ plateform5 = PlateformSprite (g,PhotoImage(file='platform66x10.png'),175,350,66,
 
 plateform6 = PlateformSprite (g,PhotoImage(file='platform66x10.png'),50,300,66,10)
 
-plateform7 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),170,120,66,10)
+plateform7 = PlateformSprite (g,PhotoImage(file='platform66x10.png'),170,120,66,10)
 
 plateform8 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),45,60,66,10)
 
@@ -257,5 +276,7 @@ g.sprites.append(plateform9)
 g.sprites.append(plateform10)
 sf = stickFigure(g)
 g.sprites.append(sf)
+door =DoorSprite(g, PhotoImage(file="dooropen.png"), 45, 30, 40, 35)
+g.sprites.append(door)
 g.mainloop()
 
