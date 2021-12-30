@@ -34,7 +34,7 @@ class Game:
           sprite.move()
       self.tk.update_idletasks() 
       self.tk.update()
-      time.sleep(.007)  
+      time.sleep(.01)  
 class Coords:
   def __init__(self,x1=0,y1=0,x2=0,y2=0):
     self.x1 = x1
@@ -126,13 +126,13 @@ class stickFigure(Sprite):
     game.canvas.bind('<KeyRelease>',self.stop)
   def turn_right(self,evt):
     if self.x == 0:
-      self.x = 1.75
+      self.x = 2
       self.run_count = 0
   def stop(self,evt):
     self.x =  0 
   def turn_left(self,evt):
     if self.x == 0:
-      self.x = -1.75
+      self.x = -2
       self.run_count = 0
   def jump (self,evt):
     if self.y == 0:
@@ -172,9 +172,9 @@ class stickFigure(Sprite):
         self.y = 4
     if self.y > 0:
       self.jump_count -= 1
-    if self.x != 0:
+    if self.x != 0: 
       self.run_count += 1
-      if self.run_count >35:
+      if self.run_count >50:
         if self.y == 0:
           self.x = 0
           self.animate()
@@ -259,7 +259,7 @@ plateform6 = PlateformSprite (g,PhotoImage(file='platform66x10.png'),50,300,66,1
 
 plateform7 = PlateformSprite (g,PhotoImage(file='platform66x10.png'),170,120,66,10)
 
-plateform8 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),45,60,66,10)
+plateform8 = PlateformSprite (g,PhotoImage(file='platform100x10.png'),45,60,100,10)
 
 plateform9 = PlateformSprite (g,PhotoImage(file='plateform10x32.png'),170,250,32,10)
 
